@@ -11,7 +11,7 @@
 		<aside class="col-md-6">
 <article class="gallery-wrap"> 
 	<div class="img-big-wrap">
-	   <a href="#"><img src="./images/items/12.jpg"></a>
+	   <a href="#"><img src="{{product.images.url}}"></a>
 	</div> <!-- img-big-wrap.// -->
 	
 </article> <!-- gallery-wrap .end// -->
@@ -70,7 +70,7 @@
     {% if product.stock <= 0 %}
 	<h5 class="text-danger">Out of Stock</h5>
     {% else %}
-    <a href="#" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
+    <a href="{% url 'add_cart' product.id %}" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
     {% endif %}
 </article> <!-- product-info-aside .// -->
 		</main> <!-- col.// -->
