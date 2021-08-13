@@ -5,11 +5,11 @@
 <!-- ========================= SECTION PAGETOP ========================= -->
 <section class="section-pagetop bg">
 <div class="container">
-	{% comment %} {% if 'search' in request.path %}
-		<h2 class="title-page">Search Result</h2>
+	{% if 'search' in request.path %}
+		<h2 class="title-page text-center">Search Result</h2>
 	{% else %}
-		<h2 class="title-page">Our Store</h2>
-	{% endif %} {% endcomment %}
+		<h2 class="title-page text-center">Our Store</h2>
+	{% endif %} 
 
 </div> <!-- container //  -->
 </section>
@@ -80,7 +80,7 @@
 	{% endfor %}
 	{% else %}
 	<div>
-		<h2>No result found. Please try again.</h2>
+		<h3>No result found. Please search again.</h3>
 	</div>
 	{% endif %}
 </div> <!-- row end.// -->
