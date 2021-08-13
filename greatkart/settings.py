@@ -84,6 +84,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'category.context_processors.menu_links',  ###########this is defined in categogry app for available in all templates####
+                'carts.context_processors.cart_counter',  ###########this is defined in categogry app for available in all templates####
             ],
         },
     },

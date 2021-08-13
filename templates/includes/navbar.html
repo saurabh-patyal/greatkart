@@ -23,14 +23,14 @@
         <i class="fa fa-bars"></i> All category
       </button>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">All Products </a>
+        <a class="dropdown-item" href="{% url 'store' %}">All Products </a>
           {% for category_links in links %}
           <a class="dropdown-item" href="{{category_links.get_url}}">{{category_links.category_name}} </a>
           {% endfor %}
       </div>
     </div>  <!-- category-wrap.// -->
   </div> <!-- col.// -->
-  <a href="#" class="btn btn-outline-primary">Store</a>
+  <a href="{% url 'store' %}" class="btn btn-outline-primary">Store</a>
   <div class="col-lg  col-md-6 col-sm-12 col">
     <form action="#" class="search" method='GET'>
       <div class="input-group w-100">
@@ -65,7 +65,7 @@
          
           <a href="{% url 'cart' %}" class="widget-header pl-3 ml-3">
             <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
-            <span class="badge badge-pill badge-danger notify">5</span>
+            <span class="badge badge-pill badge-danger notify">{{cart_count}}</span>
           </a>
 
         </div> <!-- widgets-wrap.// -->

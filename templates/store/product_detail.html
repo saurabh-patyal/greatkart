@@ -67,10 +67,15 @@
 		</div>
 	</div> <!-- row.// -->
 	<hr>
-    {% if product.stock <= 0 %}
+    {% if product.stock <= 0 %}  <!--condition for out of stock== -->
 	<h5 class="text-danger">Out of Stock</h5>
     {% else %}
-    <a href="{% url 'add_cart' product.id %}" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
+		{% if in_cart %} <!--condition for if speicific product already in cart== -->
+    		<a href="#" class="btn  btn-success"> <span class="text">Already Added To Cart</span> <i class="fas fa-check"></i>  </a>
+			<a href="{% url 'cart' %}" class="btn  btn-outline-primary"> <span class="text">Go To Cart For Re-order</span> <i class="fas fa-eye"></i>  </a>
+		{% else %}
+			<a href="{% url 'add_cart' product.id %}" class="btn  btn-primary"> <span class="text">Add To Cart</span> <i class="fas fa-shopping-cart"></i>  </a>
+		{% endif %}
     {% endif %}
 </article> <!-- product-info-aside .// -->
 		</main> <!-- col.// -->
