@@ -122,6 +122,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Messages Config
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger'
+   
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

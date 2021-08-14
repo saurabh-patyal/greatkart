@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block title %} <title>Gkart | Register</title>{% endblock %}
+{% block  content %}
+{% load crispy_forms_tags %}
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+
+<!-- ============================ COMPONENT REGISTER   ================================= -->
+	<div class="card mx-auto" style="max-width:520px; margin-top:40px;">
+      <article class="card-body">
+		<header class="mb-4"><h4 class="card-title">Register</h4></header>
+		<form action="{% url 'signup' %}" method='POST'>
+			{% csrf_token %}
+				{% csrf_token %}
+                  {% comment %} ####2-col-form-layout############ {% endcomment %}
+				  <div class="form-row">
+					<div class="col form-group">
+						<label>First Name</label>
+						{% comment %} #############showing field manually incase want 2 col layout without using crispy############ {% endcomment %}
+					  	{{form.first_name }}
+						  {% comment %} ################Showing error field by field manually.2col##### {% endcomment %}
+							<div class="showError">{{form.first_name.errors | striptags}}</div>
+						  
+					</div> <!-- form-group end.// -->
+					<div class="col form-group">
+						<label>Last Name</label>
+					  	{{form.last_name }}
+						  
+							<div class="showError">{{form.last_name.errors | striptags }}</div>
+						  
+					</div> <!-- form-group end.// -->
+				</div> <!-- form-row end.// -->
+
+				<div class="form-row">
+					<div class="col form-group">
+						<label>Email*</label>
+					  	{{form.email }}
+						
+							<div class="showError">{{form.email.errors | striptags}}</div>
+						
+					</div> <!-- form-group end.// -->
+					<div class="col form-group">
+						<label>Phone</label>
+					  	{{form.phone_number }}
+						
+							<div class="showError">{{form.phone_number.errors | striptags}}</div>
+						
+					</div> <!-- form-group end.// -->
+				</div> <!-- form-row end.// -->
+					
+				
+				
+				
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label>Create Password*</label>
+					    {{form.password }}
+						{% comment %} #####In case of password &confirm password match error we need to show both form.error & non_field_error## {% endcomment %}
+							<div class="showError">{{form.password.errors | striptags}}</div>
+							<div class="showError">{{form.non_field_errors | striptags}}</div>
+						
+					</div> <!-- form-group end.// --> 
+					<div class="form-group col-md-6">
+						<label>Confirm Password*</label>
+					    {{form.confirm_password }}
+							<div class="showError">{{form.password.errors | striptags}}</div>
+							<div class="showError">{{form.non_field_errors | striptags}}</div>
+						
+					</div> <!-- form-group end.// -->  
+				</div>
+				  
+			    <div class="form-group">
+			        <input type="submit" value="Register" class="btn btn-primary btn-block">
+			    </div> <!-- form-group// -->      
+			        
+			</form>
+		</article><!-- card-body.// -->
+    </div> <!-- card .// -->
+    <p class="text-center mt-4">Already!Have An Account? <a href="{% url 'login' %}">Log In</a></p>
+    <br><br>
+<!-- ============================ COMPONENT REGISTER  END.// ================================= -->
+
+
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+{% endblock %}
