@@ -66,3 +66,8 @@ def logout(request):
     auth.logout(request)
     messages.success(request,'You are Now Successfully Logged Out')
     return redirect('home')
+
+##############Logout user & Redirected to home page#################
+@login_required(login_url='login')   
+def dashboard(request):
+    return render(request,'accounts/dashboard.html')
