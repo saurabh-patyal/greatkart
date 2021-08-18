@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-
-
+from datetime import datetime
+from .choices import STATE_CHOICES
 # Create your models here.
 
 class MyAccountManager(BaseUserManager):
@@ -41,11 +41,11 @@ class MyAccountManager(BaseUserManager):
 
 
 class Account(AbstractBaseUser):
-    first_name      = models.CharField(max_length=50)
-    last_name       = models.CharField(max_length=50)
+    first_name      = models.CharField(max_length=50,blank=True)
+    last_name       = models.CharField(max_length=50,blank=True)
     username        = models.CharField(max_length=50, unique=True)
     email           = models.EmailField(max_length=100, unique=True)
-    phone_number    = models.CharField(max_length=50)
+    phone_number    = models.CharField(max_length=50,blank=True)
 
     # required
     date_joined     = models.DateTimeField(auto_now_add=True)
@@ -56,7 +56,7 @@ class Account(AbstractBaseUser):
     is_superadmin        = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
+    REQUIRED_FIELDS = ['username',]
 
     objects = MyAccountManager()
 
@@ -71,5 +71,24 @@ class Account(AbstractBaseUser):
 
     def has_module_perms(self, add_label):
         return True
+
+
+################User Profile######################
+class UserProfile(models.Model):
+    user = models.OneToOneField(Account, on_delete=models.CASCADE)
+    address_line_1 = models.CharField(blank=True, max_length=100)
+    address_line_2 = models.CharField(blank=True, max_length=100)
+    profile_picture = models.ImageField(blank=True, upload_to='userprofile',default='default.jpg', null=True)
+    city = models.CharField(blank=True, max_length=20,default='Delhi')
+    state = models.CharField(blank=True, max_length=60 ,choices=STATE_CHOICES)
+    country = models.CharField(blank=True, max_length=20 ,default='India')
+    updated_date = models.DateTimeField(default=datetime.now,blank=True,null=True)
+
+
+    def __str__(self):
+        return self.user.first_name
+
+    def full_address(self):
+        return f'{self.address_line_1} {self.address_line_2}'
 
 

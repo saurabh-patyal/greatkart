@@ -9,41 +9,41 @@
 	<div class="card mx-auto" style="max-width:520px; margin-top:40px;">
       <article class="card-body">
 		<header class="mb-4"><h4 class="card-title">Register</h4></header>
-		<form action="{% url 'signup' %}" method='POST'>
+		<form action="{% url 'signup' %}" method='POST' novalidate>
 			{% csrf_token %}
 				{% csrf_token %}
                   {% comment %} ####2-col-form-layout############ {% endcomment %}
 				  <div class="form-row">
 					<div class="col form-group">
-						<label>First Name</label>
+						{% comment %} <label>First Name</label> {% endcomment %}
 						{% comment %} #############showing field manually incase want 2 col layout without using crispy############ {% endcomment %}
-					  	{{form.first_name }}
+					  	{{form.first_name | as_crispy_field }}
 						  {% comment %} ################Showing error field by field manually.2col##### {% endcomment %}
-							<div class="showError">{{form.first_name.errors | striptags}}</div>
+							{% comment %} <div class="showError">{{form.first_name.errors | striptags}}</div> {% endcomment %}
 						  
 					</div> <!-- form-group end.// -->
 					<div class="col form-group">
-						<label>Last Name</label>
-					  	{{form.last_name }}
+						{% comment %} <label>Last Name</label> {% endcomment %}
+					  	{{form.last_name | as_crispy_field }}
 						  
-							<div class="showError">{{form.last_name.errors | striptags }}</div>
+							{% comment %} <div class="showError">{{form.last_name.errors | striptags }}</div> {% endcomment %}
 						  
 					</div> <!-- form-group end.// -->
 				</div> <!-- form-row end.// -->
 
 				<div class="form-row">
 					<div class="col form-group">
-						<label>Email*</label>
-					  	{{form.email }}
+						{% comment %} <label>Email*</label> {% endcomment %}
+					  	{{form.email | as_crispy_field}}
 						
-							<div class="showError">{{form.email.errors | striptags}}</div>
+							{% comment %} <div class="showError">{{form.email.errors | striptags}}</div> {% endcomment %}
 						
 					</div> <!-- form-group end.// -->
 					<div class="col form-group">
-						<label>Phone</label>
-					  	{{form.phone_number }}
+						{% comment %} <label>Phone</label> {% endcomment %}
+					  	{{form.phone_number | as_crispy_field }}
 						
-							<div class="showError">{{form.phone_number.errors | striptags}}</div>
+							{% comment %} <div class="showError">{{form.phone_number.errors | striptags}}</div> {% endcomment %}
 						
 					</div> <!-- form-group end.// -->
 				</div> <!-- form-row end.// -->
@@ -53,18 +53,18 @@
 				
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label>Create Password*</label>
-					    {{form.password }}
+						{% comment %} <label>Create Password*</label> {% endcomment %}
+					    {{form.password | as_crispy_field }}
 						{% comment %} #####In case of password &confirm password match error we need to show both form.error & non_field_error## {% endcomment %}
-							<div class="showError">{{form.password.errors | striptags}}</div>
+							{% comment %} <div class="showError">{{form.password.errors | striptags}}</div> {% endcomment %}
 							<div class="showError">{{form.non_field_errors | striptags}}</div>
 						
 					</div> <!-- form-group end.// --> 
 					<div class="form-group col-md-6">
-						<label>Confirm Password*</label>
-					    {{form.confirm_password }}
-							<div class="showError">{{form.password.errors | striptags}}</div>
-							<div class="showError">{{form.non_field_errors | striptags}}</div>
+						{% comment %} <label>Confirm Password*</label> {% endcomment %}
+					    {{form.confirm_password | as_crispy_field}}
+							{% comment %} <div class="showError">{{form.password.errors | striptags}}</div>{% endcomment %}
+							<div class="showError">{{form.non_field_errors | striptags}}</div> 
 						
 					</div> <!-- form-group end.// -->  
 				</div>

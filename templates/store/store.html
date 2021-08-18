@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block content %}
 <!-- ========================= SECTION PAGETOP ========================= -->
@@ -51,7 +52,7 @@
 
 <header class="border-bottom mb-4 pb-3">
 		<div class="form-inline">
-			<span class="mr-md-auto"><b>{{product_count}}</b> items found </span>
+			<span class="mr-md-auto"><b>{{product_count | intcomma}}</b> items found </span>
 
 		</div>
 </header><!-- sect-heading -->
@@ -70,7 +71,7 @@
 				<div class="fix-height">
 					<a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>
 					<div class="price-wrap mt-2">
-						<span class="price">$ {{ product.price }}</span>
+						<span class="price">₹{{ product.price | intcomma}}</span>
 					</div> <!-- price-wrap.// -->
 				</div>
 				<a href="{{ product.get_url }}" class="btn btn-block btn-primary">View Details </a>

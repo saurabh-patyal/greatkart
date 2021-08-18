@@ -1,0 +1,134 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="max-age=604800" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+{% block title %}<title>GreatKart | Change Your Profile</title>{% endblock  %}
+
+<link href="{% static 'images/favicon.ico' %}" rel="shortcut icon" type="image/x-icon">
+
+<!-- jQuery -->
+<script src="{% static 'js/jquery-2.0.0.min.js' %}" type="text/javascript"></script>
+
+<!-- Bootstrap4 files-->
+<script src="{% static 'js/bootstrap.bundle.min.js' %}" type="text/javascript"></script>
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css"/>
+
+<!-- Font awesome 5 -->
+<link href="{% static 'fonts/fontawesome/css/all.min.css' %}" type="text/css" rel="stylesheet">
+
+<!-- custom style -->
+<link href="{% static 'css/ui.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'css/responsive.css' %}" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+
+<link href="{% static 'css/custom.css' %}" rel="stylesheet" type="text/css"/>
+
+</head>
+<body>
+{% include 'includes/navbar.html' %}
+{% load crispy_forms_tags %}
+<div class="container">
+    <div class="row margin-y">
+        <div class="col-lg-3">
+        {% include 'includes/dashboard_sidebar.html' %}
+        </div>
+        <div class="col-lg-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h5 class="card-title"><h2>User Profile</h2></h5>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="">
+                                <img src="{{profile_picture.url}}" class="img-thumbnail mx-auto rounded-circle" alt="proile-pic" style="height:150px;width:150px;">
+                                <small class="form-text text-muted">Last Updated : {{updated_time | timesince}}</small>
+  </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="card-text">
+                        <form action="{% url 'UpdateProfile' %}" method="post" novalidate enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    
+                                    {% comment %} #############showing field manually incase want 2 col layout without using crispy############ {% endcomment %}
+                                    {{form1.first_name | as_crispy_field }}
+                                    {% comment %} ################Showing error field by field manually.2col##### {% endcomment %}
+                                        {% comment %} <div class="showError">{{form.first_name.errors | striptags}}</div> {% endcomment %}
+                                    
+                                </div> <!-- form-group end.// -->
+                                <div class="col form-group">
+                                    {% comment %} <label>Last Name</label> {% endcomment %}
+                                    {{form1.last_name | as_crispy_field }}
+
+                                </div> <!-- form-group end.// -->
+                            </div> <!-- form-row end.// -->
+{% comment %} ######################################################################2nd row################# {% endcomment %}
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    
+                                    {% comment %} #############showing field manually incase want 2 col layout without using crispy############ {% endcomment %}
+                                    {{form2.address_line_1 | as_crispy_field }}
+                                    {% comment %} ################Showing error field by field manually.2col##### {% endcomment %}
+                                        {% comment %} <div class="showError">{{form.first_name.errors | striptags}}</div> {% endcomment %}
+                                    
+                                </div> <!-- form-group end.// -->
+                                <div class="col form-group">
+                                    {% comment %} <label>Last Name</label> {% endcomment %}
+                                    {{form2.address_line_2 | as_crispy_field }}
+
+                                </div> <!-- form-group end.// -->
+                            </div> <!-- form-row end.// -->
+{% comment %} ######################################################################3rd row################# {% endcomment %}
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    
+                                    {% comment %} #############showing field manually incase want 2 col layout without using crispy############ {% endcomment %}
+                                    {{form1.phone_number | as_crispy_field }}
+                                    {% comment %} ################Showing error field by field manually.2col##### {% endcomment %}
+                                        {% comment %} <div class="showError">{{form.first_name.errors | striptags}}</div> {% endcomment %}
+                                    
+                                </div> <!-- form-group end.// -->
+                                <div class="col form-group">
+                                    {% comment %} <label>Last Name</label> {% endcomment %}
+                                    {{form2.profile_picture | as_crispy_field }}
+
+                                </div> <!-- form-group end.// -->
+                            </div> <!-- form-row end.// -->
+{% comment %} ######################################################################4th row################# {% endcomment %}
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    
+                                    {% comment %} #############showing field manually incase want 2 col layout without using crispy############ {% endcomment %}
+                                    {{form2.city | as_crispy_field }}
+                                    {% comment %} ################Showing error field by field manually.2col##### {% endcomment %}
+                                        {% comment %} <div class="showError">{{form.first_name.errors | striptags}}</div> {% endcomment %}                               
+                                </div> <!-- form-group end.// -->
+                                <div class="col form-group">
+                                    {% comment %} <label>Last Name</label> {% endcomment %}
+                                  
+                                    {{form2.state | as_crispy_field }}
+                                </div> <!-- form-group end.// -->
+                            </div> <!-- form-row end.// -->
+{% comment %} #############################one row################ {% endcomment %}
+                            <div class="form-group">
+                                {{form2.country | as_crispy_field }}
+                            </div> <!-- form-group end.// -->
+                            <button class="btn btn-primary btn-block" type="submit">Save</button>
+                        </form>
+                    </p>          
+                </div>
+            </div>
+        </div>  
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+
+		<ul class="list-group">
+			<a class="list-group-item {% if 'dashboard' in request.path %}active{% endif %}" href="{% url 'dashboard' %}">Dahboard </a>
+			<a class="list-group-item {% if 'orders' in request.path %}active{% endif %}" href="#"> My Orders </a>
+			<a class="list-group-item {% if 'UpdateProfile' in request.path %}active{% endif %}" href="{% url 'UpdateProfile' %}"> Edit Profile </a>
+			<a class="list-group-item {% if 'changeuserpassword' in request.path %}active{% endif %}" href="{% url 'changeuserpassword' %}">Change Password </a>
+			
+		</ul>
+		<br>
+		<a class="btn btn-outline-primary btn-block " href="{% url 'logout' %}"> <i class="fa fa-power-off"></i> Log out</a> 
+		
